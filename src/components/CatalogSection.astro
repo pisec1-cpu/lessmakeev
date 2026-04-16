@@ -1,14 +1,11 @@
 ---
 const catalogItems = [
-  { id: 1, name: "Доска обрезная", image: "/imports/catalog/catalog-8.png", price: "7 000", size: "25×150×6000 мм", description: "Чаще всего используют для обрешётки, настилов и черновых работ." },
-  { id: 2, name: "Доска обрезная", image: "/imports/catalog/catalog-7.png", price: "12 000", size: "40×150×6000 мм", description: "Подходит для каркасов, перекрытий и строительных работ по участку." },
-  { id: 3, name: "Доска обрезная", image: "/imports/catalog/dos-2.png", price: "19 000", size: "50×200×6000 мм", description: "Берут для перекрытий, лаг и усиленных несущих конструкций." },
-  { id: 4, name: "Брус", image: "/imports/catalog/catalog-1.png", price: "12 000", size: "100×100×6100 мм", description: "Часто используют для стоек, опор и лёгких каркасных строений." },
-  { id: 5, name: "Брус", image: "/imports/catalog/catalog-3.png", price: "18 000", size: "150×150×6100 мм", description: "Подходит для домов, бань, несущих стен и мощных каркасов." },
-  { id: 6, name: "Брус", image: "/imports/catalog/catalog-4.png", price: "19 000", size: "200×200×6100 мм", description: "Используют для капитальных построек и нагруженных конструкций." },
-  { id: 7, name: "Брусок", image: "/imports/catalog/catalog-8.png", price: "20 000", size: "50×50×6100 мм", description: "Чаще всего идёт на обрешётку, рейки, перегородки и отделку." },
-  { id: 8, name: "Доска обрезная", image: "/imports/catalog/catalog-2.png", price: "12 000", size: "50×150×6100 мм", description: "Подходит для лаг, перекрытий, стропил и хозяйственных построек." },
-  { id: 9, name: "Брус", image: "/imports/catalog/catalog-5.png", price: "12 000", size: "100×150×6100 мм", description: "Используют для несущих элементов, перекрытий и каркасных узлов." },
+  { id: 1, name: "Брус", image: "/imports/catalog/catalog-1.png", price: "12 000", size: "100×100 — 200×200 мм", description: "Для стоек, опор, несущих стен, домов, бань и капитальных построек." },
+  { id: 2, name: "Доска обрезная", image: "/imports/catalog/catalog-8.png", price: "18 000", size: "25×100 — 70×200 мм", description: "Для обрешётки, настилов, каркасов, перекрытий и стропил." },
+  { id: 3, name: "Брусок", image: "/imports/catalog/catalog-4.png", price: "20 000", size: "40×50 — 50×50 мм", description: "Для обрешётки, реек, перегородок и отделочных работ." },
+  { id: 4, name: "Брус 2-х кантный", image: "/imports/catalog/catalog-3.png", price: "13 000", size: "150 — 200 мм", description: "Подходит для строительства домов, бань и хозяйственных построек." },
+  { id: 5, name: "Лес кругляк", image: "/imports/catalog/catalog-5.png", price: "12 000", size: "Сосна, ель", description: "Сосна и ель архангельской заготовки. Прямые поставки с производства." },
+  { id: 6, name: "Дрова горбыль", image: "/imports/catalog/dos-2.png", price: "12 000", size: "12 м³", description: "Горбыль для отопления. Продажа машинами по 12 м³." },
 ];
 ---
 <section id="catalog" class="relative py-16 md:py-20 px-6 md:px-8 bg-white overflow-hidden">
@@ -50,26 +47,20 @@ const catalogItems = [
             />
           </div>
           <div class="p-5 md:p-6 flex flex-col flex-1">
-            <div class="mb-2 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+            <div class="mb-3 flex items-baseline justify-between gap-2">
               <h3
                 class="text-xl md:text-2xl font-bold text-gray-900"
                 style="font-family: 'Bitter', serif"
               >
                 {item.name}
               </h3>
-              <span
-                class="text-sm md:text-base text-gray-600"
+              <p
+                class="text-gray-900 text-lg md:text-xl font-bold whitespace-nowrap"
                 style="font-family: 'Inter', sans-serif"
               >
-                ({item.size})
-              </span>
+                <span class="text-gray-500 font-normal text-base">от </span>{item.price} ₽/м³
+              </p>
             </div>
-            <p
-              class="text-gray-900 text-lg md:text-xl font-bold mb-3"
-              style="font-family: 'Inter', sans-serif"
-            >
-              от {item.price} ₽/м³
-            </p>
             <p
               class="text-sm md:text-base text-gray-600 mb-4 flex-1 leading-relaxed"
               style="font-family: 'Inter', sans-serif"
