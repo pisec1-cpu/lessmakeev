@@ -1,11 +1,11 @@
 ---
 const catalogItems = [
-  { id: 1, name: "Брус", image: "/imports/catalog/catalog-1.png", price: "12 000", size: "100×100 — 200×200 мм", description: "Для стоек, опор, несущих стен, домов, бань и капитальных построек." },
-  { id: 2, name: "Доска обрезная", image: "/imports/catalog/catalog-8.png", price: "18 000", size: "25×100 — 70×200 мм", description: "Для обрешётки, настилов, каркасов, перекрытий и стропил." },
-  { id: 3, name: "Брусок", image: "/imports/catalog/catalog-4.png", price: "20 000", size: "40×50 — 50×50 мм", description: "Для обрешётки, реек, перегородок и отделочных работ." },
-  { id: 4, name: "Брус 2-х кантный", image: "/imports/catalog/catalog-3.png", price: "13 000", size: "150 — 200 мм", description: "Подходит для строительства домов, бань и хозяйственных построек." },
-  { id: 5, name: "Лес кругляк", image: "/imports/catalog/catalog-5.png", price: "12 000", size: "Сосна, ель", description: "Сосна и ель архангельской заготовки. Прямые поставки с производства." },
-  { id: 6, name: "Дрова горбыль", image: "/imports/catalog/dos-2.png", price: "12 000", size: "12 м³", description: "Горбыль для отопления. Продажа машинами по 12 м³." },
+  { id: 1, name: "Брус", image: "/imports/catalog/catalog-1.png", price: "12 000", size: "100×100 — 200×200 мм", description: "Для стоек, опор, несущих стен, домов, бань и капитальных построек.", featured: false },
+  { id: 2, name: "Доска обрезная", image: "/imports/catalog/catalog-8.png", price: "18 000", size: "25×100 — 70×200 мм", description: "Для обрешётки, настилов, каркасов, перекрытий и стропил.", featured: true },
+  { id: 3, name: "Брусок", image: "/imports/catalog/catalog-4.png", price: "20 000", size: "40×50 — 50×50 мм", description: "Для обрешётки, реек, перегородок и отделочных работ.", featured: false },
+  { id: 4, name: "Брус 2-х кантный", image: "/imports/catalog/catalog-3.png", price: "13 000", size: "150 — 200 мм", description: "Подходит для строительства домов, бань и хозяйственных построек.", featured: false },
+  { id: 5, name: "Лес кругляк", image: "/imports/catalog/catalog-5.png", price: "12 000", size: "Сосна, ель", description: "Сосна и ель архангельской заготовки. Прямые поставки с производства.", featured: false },
+  { id: 6, name: "Дрова горбыль", image: "/imports/catalog/dos-2.png", price: "12 000", size: "12 м³", description: "Горбыль для отопления. Продажа машинами по 12 м³.", featured: false },
 ];
 ---
 <section id="catalog" class="relative py-16 md:py-20 px-6 md:px-8 bg-white overflow-hidden">
@@ -37,7 +37,13 @@ const catalogItems = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-10 md:mb-12">
       {catalogItems.map((item) => (
-        <div class="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+        <div class={`group bg-white border-2 rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col relative ${item.featured ? 'border-green-500 shadow-md shadow-green-100' : 'border-gray-200'}`}>
+          {item.featured && (
+            <div class="absolute top-3 left-3 z-10 flex items-center gap-1 px-2.5 py-1 bg-green-600 text-white text-xs font-semibold rounded-full shadow" style="font-family: 'Inter', sans-serif">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Популярный товар
+            </div>
+          )}
           <div class="aspect-[4/3] overflow-hidden bg-gray-100">
             <img
               src={item.image}
@@ -87,7 +93,7 @@ const catalogItems = [
         href="/price.pdf"
         target="_blank"
         rel="noreferrer"
-        class="inline-flex items-center justify-center gap-2 px-10 md:px-12 py-3 md:py-4 border-2 border-gray-900 text-gray-900 rounded-lg hover:bg-gray-900 hover:text-white transition-colors text-base md:text-lg font-medium w-full sm:w-auto"
+        class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 border-2 border-gray-900 text-gray-900 rounded-lg hover:bg-gray-900 hover:text-white transition-colors text-sm md:text-base font-medium w-full sm:w-auto"
         style="font-family: 'Inter', sans-serif"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
