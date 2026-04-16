@@ -1,0 +1,108 @@
+---
+---
+<!-- Overlay -->
+<div id="order-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+  <div id="modal-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+  <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
+    <!-- Close -->
+    <button id="modal-close" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-900 transition-colors" aria-label="Закрыть">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+
+    <h3 class="text-2xl font-bold text-gray-900 mb-2" style="font-family: 'Bitter', serif">Оставить заявку</h3>
+    <p class="text-gray-500 text-sm mb-6" style="font-family: 'Inter', sans-serif">Мы свяжемся с вами в ближайшее время</p>
+
+    <div id="modal-product" class="mb-5 px-4 py-3 bg-green-50 border border-green-200 rounded-lg text-sm text-gray-700 hidden" style="font-family: 'Inter', sans-serif"></div>
+
+    <form id="order-form" class="space-y-4" novalidate>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1.5" style="font-family: 'Inter', sans-serif">Имя</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="Иван Иванов"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+          style="font-family: 'Inter', sans-serif"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1.5" style="font-family: 'Inter', sans-serif">Телефон</label>
+        <input
+          type="tel"
+          name="phone"
+          placeholder="+7 (___) ___-__-__"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+          style="font-family: 'Inter', sans-serif"
+        />
+      </div>
+      <button
+        type="submit"
+        class="w-full py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors"
+        style="font-family: 'Inter', sans-serif"
+      >
+        Отправить заявку
+      </button>
+      <p class="text-xs text-gray-400 text-center leading-relaxed" style="font-family: 'Inter', sans-serif">
+        Нажимая кнопку, вы соглашаетесь с
+        <a href="#" class="underline hover:text-gray-600 transition-colors">обработкой персональных данных</a>
+      </p>
+    </form>
+
+    <!-- Success state -->
+    <div id="modal-success" class="hidden text-center py-6">
+      <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <p class="text-xl font-bold text-gray-900 mb-2" style="font-family: 'Bitter', serif">Заявка принята!</p>
+      <p class="text-gray-500 text-sm" style="font-family: 'Inter', sans-serif">Мы перезвоним вам в ближайшее время</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("order-modal")!;
+  const backdrop = document.getElementById("modal-backdrop")!;
+  const closeBtn = document.getElementById("modal-close")!;
+  const form = document.getElementById("order-form")!;
+  const success = document.getElementById("modal-success")!;
+  const productLabel = document.getElementById("modal-product")!;
+
+  function openModal(product?: string) {
+    if (product) {
+      productLabel.textContent = `Товар: ${product}`;
+      productLabel.classList.remove("hidden");
+    } else {
+      productLabel.classList.add("hidden");
+    }
+    form.classList.remove("hidden");
+    success.classList.add("hidden");
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal() {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+    document.body.style.overflow = "";
+  }
+
+  // Открытие по кнопкам "Заказать"
+  document.querySelectorAll<HTMLElement>("[data-order-btn]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      openModal(btn.dataset.product);
+    });
+  });
+
+  backdrop.addEventListener("click", closeModal);
+  closeBtn.addEventListener("click", closeModal);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    form.classList.add("hidden");
+    success.classList.remove("hidden");
+    setTimeout(closeModal, 2500);
+  });
+</script>
