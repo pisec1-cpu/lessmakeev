@@ -1,0 +1,48 @@
+---
+const photos = [
+  { src: "/foto/1.png", alt: "Лесовоз на площадке", gridClass: "md:col-span-2 md:row-span-2" },
+  { src: "/foto/1.CuFG3La5pghwayQFXshStdl_oALy_7CK_3-kDPp1rAo.I2zwVWxavjU24dw3oZnqwWs8HnHOot0GvUIukrRizFM.webp", alt: "Склад пиломатериалов", gridClass: "" },
+  { src: "/foto/2.png", alt: "Погрузка леса", gridClass: "" },
+  { src: "/foto/1.gAB3X7a5LOlB6K7ke0XYVOj8KuPDfDprzvwu7cv2Jus.JP1KAmInFf_6SzzbYlwfaydza70e_xHuAeTI32UTDrE.webp", alt: "Готовая продукция", gridClass: "md:row-span-2" },
+  { src: "/foto/3.png", alt: "Загрузка длинномера", gridClass: "" },
+  { src: "/foto/1.p-RR_ba5Cw1nSokAE-f_sM5eDQfl3h2P6F4JCe1UAQ8.EuiZC1IyIl531h5b-wg_494yoA1cPTla1_FzSpRO6Ug.webp", alt: "Качество древесины", gridClass: "" },
+  { src: "/foto/4.png", alt: "Рабочий процесс на базе", gridClass: "" },
+  { src: "/foto/1.qwtI1ra5B-J-YYXvEszzX9d1Aej89RFg8XUF5vR_DeA.JF-ok3cVdVEdlO4SwvhpSncQe_1nhziWLPJ-lFG5rJ4.webp", alt: "Обработанные материалы", gridClass: "" },
+];
+---
+<section id="gallery" class="py-16 md:py-20 px-6 md:px-8 bg-gray-50">
+  <div class="max-w-[1440px] mx-auto">
+    <h2
+      class="text-[28px] leading-tight md:text-[40px] md:leading-tight font-bold mb-3 md:mb-4 text-center text-gray-900"
+      style="font-family: 'Bitter', serif"
+    >
+      Наше производство и склад
+    </h2>
+    <p
+      class="text-center text-gray-600 mb-8 md:mb-12 text-lg md:text-xl"
+      style="font-family: 'Inter', sans-serif"
+    >
+      Собственное производство в Архангельске — контроль качества на каждом этапе
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[240px] gap-4 md:gap-6">
+      {photos.map((photo) => (
+        <div class={`relative group overflow-hidden rounded-xl bg-gray-100 shadow-md hover:shadow-2xl transition-all duration-500 ${photo.gridClass}`}>
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div class="absolute bottom-0 left-0 right-0 p-4 md:p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+              <p class="text-white font-medium text-base md:text-lg" style="font-family: 'Inter', sans-serif">
+                {photo.alt}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

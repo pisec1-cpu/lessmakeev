@@ -1,12 +1,43 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/Navigation.astro";
+import Hero from "../components/Hero.astro";
+import Features from "../components/Features.astro";
+import CatalogSection from "../components/CatalogSection.astro";
+import PhotoGallery from "../components/PhotoGallery.astro";
+import ContactsSection from "../components/ContactsSection.astro";
+import Footer from "../components/Footer.astro";
+import ForestDivider from "../components/ForestDivider.astro";
 ---
 
-<Layout title="Astro + Tailwind">
-  <main class="min-h-screen flex items-center justify-center bg-gray-50">
-    <div class="text-center">
-      <h1 class="text-4xl font-bold text-gray-900 mb-4">Сайт в разработке</h1>
-      <p class="text-lg text-gray-600">Зайдите позже.</p>
-    </div>
-  </main>
+<Layout title="Лесстройснаб — Пиломатериалы от производителя в Архангельске">
+  <div class="min-h-screen bg-white">
+    <Navigation />
+    <main>
+      <div class="section-reveal"><Hero /></div>
+      <ForestDivider />
+      <div class="section-reveal" style="transition-delay: 60ms"><Features /></div>
+      <div class="section-reveal" style="transition-delay: 90ms"><CatalogSection /></div>
+      <ForestDivider />
+      <div class="section-reveal" style="transition-delay: 120ms"><PhotoGallery /></div>
+      <div class="section-reveal" style="transition-delay: 150ms"><ContactsSection /></div>
+    </main>
+    <Footer />
+  </div>
 </Layout>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).dataset.visible = "true";
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -12% 0px", threshold: 0.16 }
+  );
+
+  document.querySelectorAll(".section-reveal").forEach((el) => observer.observe(el));
+</script>

@@ -1,0 +1,105 @@
+---
+const catalogItems = [
+  { id: 1, name: "Доска обрезная", image: "/imports/catalog/catalog-8.png", price: "7 000", size: "25×150×6000 мм", description: "Чаще всего используют для обрешётки, настилов и черновых работ." },
+  { id: 2, name: "Доска обрезная", image: "/imports/catalog/catalog-7.png", price: "12 000", size: "40×150×6000 мм", description: "Подходит для каркасов, перекрытий и строительных работ по участку." },
+  { id: 3, name: "Доска обрезная", image: "/imports/catalog/dos-2.png", price: "19 000", size: "50×200×6000 мм", description: "Берут для перекрытий, лаг и усиленных несущих конструкций." },
+  { id: 4, name: "Брус", image: "/imports/catalog/catalog-1.png", price: "12 000", size: "100×100×6100 мм", description: "Часто используют для стоек, опор и лёгких каркасных строений." },
+  { id: 5, name: "Брус", image: "/imports/catalog/catalog-3.png", price: "18 000", size: "150×150×6100 мм", description: "Подходит для домов, бань, несущих стен и мощных каркасов." },
+  { id: 6, name: "Брус", image: "/imports/catalog/catalog-4.png", price: "19 000", size: "200×200×6100 мм", description: "Используют для капитальных построек и нагруженных конструкций." },
+  { id: 7, name: "Брусок", image: "/imports/catalog/catalog-8.png", price: "20 000", size: "50×50×6100 мм", description: "Чаще всего идёт на обрешётку, рейки, перегородки и отделку." },
+  { id: 8, name: "Доска обрезная", image: "/imports/catalog/catalog-2.png", price: "12 000", size: "50×150×6100 мм", description: "Подходит для лаг, перекрытий, стропил и хозяйственных построек." },
+  { id: 9, name: "Брус", image: "/imports/catalog/catalog-5.png", price: "12 000", size: "100×150×6100 мм", description: "Используют для несущих элементов, перекрытий и каркасных узлов." },
+];
+---
+<section id="catalog" class="relative py-16 md:py-20 px-6 md:px-8 bg-white overflow-hidden">
+  <!-- Декоративный орнамент годовых колец -->
+  <div class="absolute -left-12 top-1/4 opacity-5 pointer-events-none hidden lg:block">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="90" stroke="#15803d" stroke-width="2" />
+      <circle cx="100" cy="100" r="75" stroke="#15803d" stroke-width="2" />
+      <circle cx="100" cy="100" r="60" stroke="#15803d" stroke-width="2.5" />
+      <circle cx="100" cy="100" r="45" stroke="#15803d" stroke-width="2" />
+      <circle cx="100" cy="100" r="30" stroke="#15803d" stroke-width="2" />
+      <circle cx="100" cy="100" r="15" stroke="#15803d" stroke-width="3" />
+    </svg>
+  </div>
+
+  <div class="max-w-[1440px] mx-auto relative">
+    <h2
+      class="text-[28px] leading-tight md:text-[40px] md:leading-tight font-bold mb-3 md:mb-4 text-center text-gray-900"
+      style="font-family: 'Bitter', serif"
+    >
+      Каталог продукции
+    </h2>
+    <p
+      class="text-center text-gray-600 mb-8 md:mb-12 text-lg md:text-xl"
+      style="font-family: 'Inter', sans-serif"
+    >
+      Самые популярные материалы и размеры для заказа
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-10 md:mb-12">
+      {catalogItems.map((item) => (
+        <div class="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+          <div class="aspect-[4/3] overflow-hidden bg-gray-100">
+            <img
+              src={item.image}
+              alt={item.name}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-5 md:p-6 flex flex-col flex-1">
+            <div class="mb-2 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+              <h3
+                class="text-xl md:text-2xl font-bold text-gray-900"
+                style="font-family: 'Bitter', serif"
+              >
+                {item.name}
+              </h3>
+              <span
+                class="text-sm md:text-base text-gray-600"
+                style="font-family: 'Inter', sans-serif"
+              >
+                ({item.size})
+              </span>
+            </div>
+            <p
+              class="text-gray-900 text-lg md:text-xl font-bold mb-3"
+              style="font-family: 'Inter', sans-serif"
+            >
+              от {item.price} ₽/м³
+            </p>
+            <p
+              class="text-sm md:text-base text-gray-600 mb-4 flex-1 leading-relaxed"
+              style="font-family: 'Inter', sans-serif"
+            >
+              {item.description}
+            </p>
+            <a
+              href="#contacts"
+              class="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-base font-medium"
+              style="font-family: 'Inter', sans-serif"
+            >
+              Заказать
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center">
+      <a
+        href="/price.pdf"
+        target="_blank"
+        rel="noreferrer"
+        class="inline-flex items-center justify-center gap-2 px-10 md:px-12 py-3 md:py-4 border-2 border-gray-900 text-gray-900 rounded-lg hover:bg-gray-900 hover:text-white transition-colors text-base md:text-lg font-medium w-full sm:w-auto"
+        style="font-family: 'Inter', sans-serif"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+        Посмотреть весь прайс
+      </a>
+    </div>
+  </div>
+</section>

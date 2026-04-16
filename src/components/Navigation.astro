@@ -1,0 +1,115 @@
+---
+---
+<nav class="fixed top-4 left-4 right-4 md:left-8 md:right-8 bg-white/70 backdrop-blur-md shadow-lg z-50 rounded-2xl">
+  <div class="max-w-[1440px] mx-auto px-4 md:px-6 py-2 md:py-3">
+
+    <!-- Desktop -->
+    <div class="hidden md:flex items-center justify-between relative">
+      <div class="flex-shrink-0">
+        <a href="#hero" class="nav-link block" data-target="hero">
+          <span class="text-[22px] md:text-2xl font-bold" style="font-family: 'Bitter', serif">Лесстройснаб</span>
+        </a>
+      </div>
+      <div class="absolute left-1/2 -translate-x-1/2 flex items-center gap-6 lg:gap-8">
+        <a href="#catalog" class="nav-link text-gray-700 hover:text-gray-900 transition-colors" data-target="catalog" style="font-family: 'Inter', sans-serif">Каталог</a>
+        <a href="#gallery" class="nav-link text-gray-700 hover:text-gray-900 transition-colors" data-target="gallery" style="font-family: 'Inter', sans-serif">Галерея</a>
+        <a href="#contacts" class="nav-link text-gray-700 hover:text-gray-900 transition-colors" data-target="contacts" style="font-family: 'Inter', sans-serif">Контакты</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="tel:+79115512015" class="hidden lg:flex items-center gap-2 hover:text-gray-900 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="font-medium" style="font-family: 'Inter', sans-serif">+7 (911) 551-2015</span>
+        </a>
+        <a
+          href="https://max.ru/u/f9LHodD0cOJTDig7ewCMP6Ky-5693krHzcfmecp6n7_D2VRPHBOqabsMLZg"
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-white rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap"
+          style="font-family: 'Inter', sans-serif"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+          <span class="hidden lg:inline">Написать в MAX</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile header -->
+    <div class="flex md:hidden items-center justify-between">
+      <a href="#hero" class="nav-link" data-target="hero">
+        <span class="text-xl font-bold" style="font-family: 'Bitter', serif">Лесстройснаб</span>
+      </a>
+      <button id="menu-toggle" class="p-2" aria-label="Toggle menu">
+        <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-900 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4 border-t border-gray-200 pt-4">
+      <div class="flex flex-col gap-4 items-center">
+        <a href="#catalog" class="nav-link text-gray-700 hover:text-gray-900 transition-colors py-2" data-target="catalog" style="font-family: 'Inter', sans-serif">Каталог</a>
+        <a href="#gallery" class="nav-link text-gray-700 hover:text-gray-900 transition-colors py-2" data-target="gallery" style="font-family: 'Inter', sans-serif">Галерея</a>
+        <a href="#contacts" class="nav-link text-gray-700 hover:text-gray-900 transition-colors py-2" data-target="contacts" style="font-family: 'Inter', sans-serif">Контакты</a>
+        <a href="tel:+79115512015" class="flex items-center gap-2 py-2 hover:text-gray-900 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="font-medium" style="font-family: 'Inter', sans-serif">+7 (911) 551-2015</span>
+        </a>
+        <a
+          href="https://max.ru/u/f9LHodD0cOJTDig7ewCMP6Ky-5693krHzcfmecp6n7_D2VRPHBOqabsMLZg"
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-white rounded-lg hover:opacity-90 transition-opacity w-full"
+          style="font-family: 'Inter', sans-serif"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+          Написать в MAX
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+const NAV_OFFSET = 112;
+const DURATION = 820;
+
+function easeInOutCubic(p: number) {
+  return p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+}
+
+function scrollToSection(targetId: string) {
+  const el = document.getElementById(targetId);
+  if (!el) return;
+  const startY = window.scrollY;
+  const targetY = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
+  const distance = targetY - startY;
+  const start = performance.now();
+  const animate = (now: number) => {
+    const progress = Math.min((now - start) / DURATION, 1);
+    window.scrollTo({ top: startY + distance * easeInOutCubic(progress), behavior: "auto" });
+    if (progress < 1) requestAnimationFrame(animate);
+  };
+  requestAnimationFrame(animate);
+}
+
+document.querySelectorAll<HTMLAnchorElement>(".nav-link").forEach((link) => {
+  link.addEventListener("click", (e) => {
+    const target = (e.currentTarget as HTMLElement).dataset.target;
+    if (!target) return;
+    e.preventDefault();
+    document.getElementById("mobile-menu")?.classList.add("hidden");
+    document.getElementById("icon-menu")?.classList.remove("hidden");
+    document.getElementById("icon-close")?.classList.add("hidden");
+    scrollToSection(target);
+  });
+});
+
+const toggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("mobile-menu");
+toggle?.addEventListener("click", () => {
+  const isOpen = !menu?.classList.contains("hidden");
+  menu?.classList.toggle("hidden", isOpen);
+  document.getElementById("icon-menu")?.classList.toggle("hidden", !isOpen);
+  document.getElementById("icon-close")?.classList.toggle("hidden", isOpen);
+});
+</script>
