@@ -1,10 +1,13 @@
 ---
 const ADDRESS = "Архангельск, Дачная улица, 64 к1 ст7";
-const EXACT_POINT = "40.692209,64.517304";
-const MAP_CENTER = "40.696500,64.518800";
-const MAP_ZOOM = "14.2";
-const YANDEX_MAPS_EMBED_URL = `https://yandex.ru/map-widget/v1/?ll=${encodeURIComponent(MAP_CENTER)}&pt=${encodeURIComponent(`${EXACT_POINT},pm2rdm`)}&z=${MAP_ZOOM}`;
-const YANDEX_MAPS_LINK = `https://yandex.ru/maps/?ll=${encodeURIComponent(MAP_CENTER)}&pt=${encodeURIComponent(EXACT_POINT)}&z=${MAP_ZOOM}`;
+const ADDRESS2 = "Архангельская обл., Приморский МО, д. Часовенское, 19 стр. 1";
+const POINT1 = "40.692209,64.517304";
+const POINT2 = "40.643395,64.463871";
+const MAP_CENTER = "40.668000,64.490000";
+const MAP_ZOOM = "12";
+const pts = encodeURIComponent(`${POINT1},pm2rdm~${POINT2},pm2rdm`);
+const YANDEX_MAPS_EMBED_URL = `https://yandex.ru/map-widget/v1/?ll=${encodeURIComponent(MAP_CENTER)}&pt=${pts}&z=${MAP_ZOOM}`;
+const YANDEX_MAPS_LINK = `https://yandex.ru/maps/?ll=${encodeURIComponent(MAP_CENTER)}&pt=${pts}&z=${MAP_ZOOM}`;
 ---
 <section id="contacts" class="py-16 md:py-20 px-6 md:px-8 bg-white">
   <div class="max-w-[1440px] mx-auto">
@@ -29,7 +32,8 @@ const YANDEX_MAPS_LINK = `https://yandex.ru/maps/?ll=${encodeURIComponent(MAP_CE
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-6 md:h-6 text-green-600 flex-shrink-0 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
               <div style="font-family: 'Inter', sans-serif">
                 <p class="font-medium text-gray-900 text-base">Адрес производства:</p>
-                <p class="text-sm md:text-base text-gray-600">{ADDRESS}</p>
+                <p class="text-sm md:text-base text-gray-600">{ADDRESS} <span class="text-green-600 font-medium">(основной)</span></p>
+                <p class="text-sm md:text-base text-gray-600 mt-1">{ADDRESS2}</p>
               </div>
             </div>
             <div class="flex items-start gap-3 md:gap-4">
