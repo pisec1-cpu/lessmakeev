@@ -1,11 +1,11 @@
 ---
 const catalogItems = [
-  { id: 1, name: "Брус", image: "/imports/catalog/catalog-1.png", price: "12 000", size: "100×100 — 200×200 мм", description: "Для стоек, опор, несущих стен, домов, бань и капитальных построек.", featured: false },
-  { id: 2, name: "Доска обрезная", image: "/imports/catalog/catalog-8.png", price: "18 000", size: "25×100 — 70×200 мм", description: "Для обрешётки, настилов, каркасов, перекрытий и стропил.", featured: true },
-  { id: 3, name: "Брусок", image: "/imports/catalog/catalog-4.png", price: "20 000", size: "40×50 — 50×50 мм", description: "Для обрешётки, реек, перегородок и отделочных работ.", featured: false },
-  { id: 4, name: "Брус 2-х кантный", image: "/imports/catalog/catalog-3.png", price: "13 000", size: "150 — 200 мм", description: "Подходит для строительства домов, бань и хозяйственных построек.", featured: false },
-  { id: 5, name: "Лес кругляк", image: "/imports/catalog/catalog-5.png", price: "12 000", size: "Сосна, ель", description: "Сосна и ель архангельской заготовки. Прямые поставки с производства.", featured: false },
-  { id: 6, name: "Дрова горбыль", image: "/imports/catalog/dos-2.png", price: "12 000", size: "12 м³", description: "Горбыль для отопления. Продажа машинами по 12 м³.", featured: false },
+  { id: 1, name: "Брус", image: "/400x300.webp", price: "12 000", size: "100×100 — 200×200 мм", description: "Для стоек, опор, несущих стен, домов, бань и капитальных построек.", featured: false },
+  { id: 2, name: "Доска обрезная", image: "/400x300.webp", price: "18 000", size: "25×100 — 70×200 мм", description: "Для обрешётки, настилов, каркасов, перекрытий и стропил.", featured: true },
+  { id: 3, name: "Брусок", image: "/400x300.webp", price: "20 000", size: "40×50 — 50×50 мм", description: "Для обрешётки, реек, перегородок и отделочных работ.", featured: false },
+  { id: 4, name: "Брус 2-х кантный", image: "/400x300.webp", price: "13 000", size: "150 — 200 мм", description: "Подходит для строительства домов, бань и хозяйственных построек.", featured: false },
+  { id: 5, name: "Лес кругляк", image: "/400x300.webp", price: "12 000", size: "Сосна, ель", description: "Сосна и ель архангельской заготовки. Прямые поставки с производства.", featured: false },
+  { id: 6, name: "Дрова горбыль", image: "/400x300.webp", price: "12 000", size: "12 м³", description: "Горбыль для отопления. Продажа машинами по 12 м³.", featured: false },
 ];
 ---
 <section id="catalog" class="relative py-16 md:py-20 px-6 md:px-8 bg-white overflow-hidden">
@@ -44,7 +44,7 @@ const catalogItems = [
               Популярный товар
             </div>
           )}
-          <div class="aspect-[4/3] overflow-hidden bg-gray-100">
+          <div class="aspect-[5/3] overflow-hidden bg-gray-100">
             <img
               src={item.image}
               alt={item.name}
