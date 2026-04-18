@@ -15,6 +15,7 @@
     <div id="modal-product" class="mb-5 px-4 py-3 bg-green-50 border border-green-200 rounded-lg text-sm text-gray-700 hidden" style="font-family: 'Inter', sans-serif"></div>
 
     <form id="order-form" class="space-y-4" novalidate>
+      <input type="hidden" name="product" value="" />
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1.5" style="font-family: 'Inter', sans-serif">Имя</label>
         <input
@@ -23,6 +24,7 @@
           placeholder="Имя"
           class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
           style="font-family: 'Inter', sans-serif"
+          autocomplete="name"
         />
       </div>
       <div>
@@ -33,10 +35,13 @@
           placeholder="+7 (___) ___-__-__"
           class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
           style="font-family: 'Inter', sans-serif"
+          autocomplete="tel"
         />
       </div>
+      <p id="order-error" class="hidden rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" style="font-family: 'Inter', sans-serif"></p>
       <button
         type="submit"
+        id="order-submit"
         class="w-full py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors"
         style="font-family: 'Inter', sans-serif"
       >
@@ -66,16 +71,42 @@
   const form = document.getElementById("order-form")!;
   const success = document.getElementById("modal-success")!;
   const productLabel = document.getElementById("modal-product")!;
+  const errorMessage = document.getElementById("order-error")!;
+  const submitButton = document.getElementById("order-submit") as HTMLButtonElement;
+  const productInput = form.querySelector<HTMLInputElement>('input[name="product"]')!;
+  const nameInput = form.querySelector<HTMLInputElement>('input[name="name"]')!;
+  const phoneInput = form.querySelector<HTMLInputElement>('input[name="phone"]')!;
+  const defaultSubmitLabel = submitButton.textContent ?? "Отправить заявку";
+
+  function setError(message: string) {
+    errorMessage.textContent = message;
+    errorMessage.classList.remove("hidden");
+  }
+
+  function clearError() {
+    errorMessage.textContent = "";
+    errorMessage.classList.add("hidden");
+  }
+
+  function setSubmitting(isSubmitting: boolean) {
+    submitButton.disabled = isSubmitting;
+    submitButton.textContent = isSubmitting ? "Отправляем..." : defaultSubmitLabel;
+    submitButton.classList.toggle("opacity-70", isSubmitting);
+    submitButton.classList.toggle("cursor-not-allowed", isSubmitting);
+  }
 
   function openModal(product?: string) {
     if (product) {
       productLabel.textContent = `Товар: ${product}`;
       productLabel.classList.remove("hidden");
+      productInput.value = product;
     } else {
       productLabel.classList.add("hidden");
+      productInput.value = "";
     }
     form.classList.remove("hidden");
     success.classList.add("hidden");
+    clearError();
     modal.classList.remove("hidden");
     modal.classList.add("flex");
     document.body.style.overflow = "hidden";
@@ -85,6 +116,7 @@
     modal.classList.add("hidden");
     modal.classList.remove("flex");
     document.body.style.overflow = "";
+    setSubmitting(false);
   }
 
   // Открытие по кнопкам "Заказать"
@@ -99,10 +131,57 @@
   closeBtn.addEventListener("click", closeModal);
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    form.classList.add("hidden");
-    success.classList.remove("hidden");
-    setTimeout(closeModal, 2500);
+
+    const name = nameInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const product = productInput.value.trim();
+
+    if (!name) {
+      setError("Укажите имя.");
+      nameInput.focus();
+      return;
+    }
+
+    if (!phone) {
+      setError("Укажите телефон.");
+      phoneInput.focus();
+      return;
+    }
+
+    clearError();
+    setSubmitting(true);
+
+    try {
+      const response = await fetch("/api/order.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          phone,
+          product,
+        }),
+      });
+
+      const payload = await response.json().catch(() => null);
+
+      if (!response.ok || !payload?.ok) {
+        throw new Error(payload?.error || "Не удалось отправить заявку. Попробуйте ещё раз.");
+      }
+
+      form.reset();
+      productInput.value = "";
+      form.classList.add("hidden");
+      success.classList.remove("hidden");
+      setTimeout(closeModal, 2500);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Не удалось отправить заявку. Попробуйте ещё раз.";
+      setError(message);
+    } finally {
+      setSubmitting(false);
+    }
   });
 </script>
