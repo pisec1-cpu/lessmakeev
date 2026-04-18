@@ -1,11 +1,19 @@
 ---
+import { Image } from 'astro:assets';
+import roundTimber from '../assets/catalog/round_timber.jpg';
+import gorbyl from '../assets/catalog/горбыль на дрова.jpg';
+import lafet from '../assets/catalog/лафает (брус 2х кантный).jpg';
+import brus from '../assets/catalog/брус 100-200.jpg';
+import brusok from '../assets/catalog/брусок 50-50.jpg';
+import doska from '../assets/catalog/доска обрезная 25-150.jpg';
+
 const catalogItems = [
-  { id: 1, name: "Брус", image: "/400x300.webp", price: "12 000", size: "100×100 — 200×200 мм", description: "Для стоек, опор, несущих стен, домов, бань и капитальных построек.", featured: false },
-  { id: 2, name: "Доска обрезная", image: "/400x300.webp", price: "18 000", size: "25×100 — 70×200 мм", description: "Для обрешётки, настилов, каркасов, перекрытий и стропил.", featured: true },
-  { id: 3, name: "Брусок", image: "/400x300.webp", price: "20 000", size: "40×50 — 50×50 мм", description: "Для обрешётки, реек, перегородок и отделочных работ.", featured: false },
-  { id: 4, name: "Брус 2-х кантный", image: "/400x300.webp", price: "13 000", size: "150 — 200 мм", description: "Подходит для строительства домов, бань и хозяйственных построек.", featured: false },
-  { id: 5, name: "Лес кругляк", image: "/400x300.webp", price: "12 000", size: "Сосна, ель", description: "Сосна и ель архангельской заготовки. Прямые поставки с производства.", featured: false },
-  { id: 6, name: "Дрова горбыль", image: "/400x300.webp", price: "12 000", size: "12 м³", description: "Горбыль для отопления. Продажа машинами по 12 м³.", featured: false },
+  { id: 1, name: "Брус", image: brus, price: "12 000", description: "Для стоек, опор, несущих стен, домов, бань и капитальных построек.", featured: false },
+  { id: 2, name: "Доска обрезная", image: doska, price: "18 000", description: "Для обрешётки, настилов, каркасов, перекрытий и стропил.", featured: true },
+  { id: 3, name: "Брусок", image: brusok, price: "20 000", description: "Для обрешётки, реек, перегородок и отделочных работ.", featured: false },
+  { id: 4, name: "Брус 2-х кантный", image: lafet, price: "13 000", description: "Подходит для строительства домов, бань и хозяйственных построек.", featured: false },
+  { id: 5, name: "Лес кругляк", image: roundTimber, price: "12 000", description: "Сосна и ель архангельской заготовки. Прямые поставки с производства.", featured: false },
+  { id: 6, name: "Дрова горбыль", image: gorbyl, price: "12 000", description: "Горбыль для отопления. Продажа машинами по 12 м³.", featured: false },
 ];
 ---
 <section id="catalog" class="relative py-16 md:py-20 px-6 md:px-8 bg-white overflow-hidden">
@@ -44,13 +52,8 @@ const catalogItems = [
               Популярный товар
             </div>
           )}
-          <div class="aspect-[5/3] overflow-hidden bg-gray-100">
-            <img
-              src={item.image}
-              alt={item.name}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
+          <div class="aspect-5/3 overflow-hidden bg-gray-100">
+            <Image src={item.image} alt={item.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" width={400} height={240} quality={85} />
           </div>
           <div class="p-5 md:p-6 flex flex-col flex-1">
             <div class="mb-3 flex items-baseline justify-between gap-2">
