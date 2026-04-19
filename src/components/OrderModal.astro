@@ -16,6 +16,16 @@
 
     <form id="order-form" class="space-y-4" novalidate>
       <input type="hidden" name="product" value="" />
+      <div class="honeypot-field" aria-hidden="true">
+        <label for="order-website">Не заполняйте это поле</label>
+        <input
+          id="order-website"
+          type="text"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+        />
+      </div>
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1.5" style="font-family: 'Inter', sans-serif">Имя</label>
         <input
@@ -73,6 +83,7 @@
   const success = document.getElementById("modal-success")!;
   const productLabel = document.getElementById("modal-product")!;
   const productInput = form.querySelector<HTMLInputElement>('input[name="product"]')!;
+  const websiteInput = form.querySelector<HTMLInputElement>('input[name="website"]')!;
   const nameInput = form.querySelector<HTMLInputElement>('input[name="name"]')!;
   const phoneInput = form.querySelector<HTMLInputElement>('input[name="phone"]')!;
   const submitButton = document.getElementById("order-submit") as HTMLButtonElement;
@@ -138,6 +149,7 @@
     const name = nameInput.value.trim();
     const phone = phoneInput.value.trim();
     const product = productInput.value.trim();
+    const website = websiteInput.value.trim();
 
     if (!name) {
       showError("Укажите имя.");
@@ -159,6 +171,7 @@
         name,
         phone,
         product,
+        website,
       });
 
       const response = await fetch(ORDER_ENDPOINT, {
@@ -188,3 +201,15 @@
     }
   });
 </script>
+
+<style>
+  .honeypot-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>
