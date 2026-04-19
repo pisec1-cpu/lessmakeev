@@ -43,6 +43,8 @@
           type="tel"
           name="phone"
           placeholder="+7 (___) ___-__-__"
+          inputmode="tel"
+          maxlength="18"
           class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
           style="font-family: 'Inter', sans-serif"
           autocomplete="tel"
@@ -89,6 +91,45 @@
   const submitButton = document.getElementById("order-submit") as HTMLButtonElement;
   const errorBox = document.getElementById("order-error")!;
   const defaultButtonText = submitButton.textContent ?? "Отправить заявку";
+  const phonePattern = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
+
+  function formatPhone(value: string) {
+    let digits = value.replace(/\D/g, "");
+
+    if (digits.startsWith("8")) {
+      digits = `7${digits.slice(1)}`;
+    }
+
+    if (digits.startsWith("7")) {
+      digits = digits.slice(1);
+    }
+
+    digits = digits.slice(0, 10);
+
+    let formatted = "+7";
+
+    if (digits.length > 0) {
+      formatted += ` (${digits.slice(0, 3)}`;
+    }
+
+    if (digits.length >= 3) {
+      formatted += ")";
+    }
+
+    if (digits.length > 3) {
+      formatted += ` ${digits.slice(3, 6)}`;
+    }
+
+    if (digits.length > 6) {
+      formatted += `-${digits.slice(6, 8)}`;
+    }
+
+    if (digits.length > 8) {
+      formatted += `-${digits.slice(8, 10)}`;
+    }
+
+    return formatted;
+  }
 
   function showError(message: string) {
     errorBox.textContent = message;
@@ -142,6 +183,14 @@
   backdrop.addEventListener("click", closeModal);
   closeBtn.addEventListener("click", closeModal);
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+  phoneInput.addEventListener("input", () => {
+    phoneInput.value = formatPhone(phoneInput.value);
+  });
+  phoneInput.addEventListener("focus", () => {
+    if (!phoneInput.value.trim()) {
+      phoneInput.value = "+7";
+    }
+  });
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -159,6 +208,12 @@
 
     if (!phone) {
       showError("Укажите телефон.");
+      phoneInput.focus();
+      return;
+    }
+
+    if (!phonePattern.test(phone)) {
+      showError("Укажите телефон в формате +7 (999) 778-88-99.");
       phoneInput.focus();
       return;
     }
