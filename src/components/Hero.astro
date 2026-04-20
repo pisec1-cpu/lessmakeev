@@ -1,44 +1,49 @@
 ---
-import WoodOrnament from "./WoodOrnament.astro";
+import { Image } from "astro:assets";
+import heroImage from "../assets/heroimage/hero.jpg";
+import ArrowRightIcon from "../assets/icons/ArrowRight.svg";
+import HeroWave from "./HeroWave.astro";
 ---
-<section id="hero" class="relative pt-32 md:pt-44 pb-12 md:pb-20 px-6 md:px-8 bg-linear-to-b from-gray-50 to-white overflow-hidden">
-  <WoodOrnament />
-  <div class="max-w-[1440px] mx-auto">
+<section id="hero" class="relative pt-32 md:pt-44 pb-36 md:pb-44 px-6 md:px-8 bg-gray-50 overflow-hidden">
+  <Image
+    src={heroImage}
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 h-full w-full object-cover"
+    width={1400}
+    height={671}
+    quality={88}
+    loading="eager"
+  />
+  <div class="absolute inset-0 bg-white/24"></div>
+  <div class="absolute inset-0 bg-linear-to-b from-white/18 via-white/6 to-white/48"></div>
+  <div class="relative z-20 max-w-[1440px] mx-auto">
     <div class="max-w-5xl mx-auto text-center">
       <h1
-        class="text-3xl sm:text-4xl md:text-[52px] md:leading-[1.1] leading-tight font-bold mb-4 md:mb-6 text-gray-900"
+        class="text-3xl sm:text-4xl md:text-[52px] md:leading-[1.1] leading-tight font-bold mb-4 md:mb-6 text-gray-950"
         style="font-family: 'Bitter', serif"
       >
         Пиломатериалы от производителя<br />в&nbsp;Архангельске
       </h1>
       <div class="max-w-3xl mx-auto">
         <p
-          class="text-base md:text-xl text-gray-600 mb-6 md:mb-8 leading-relaxed"
+          class="text-base md:text-xl text-gray-800 font-medium mb-6 md:mb-8 leading-relaxed"
           style="font-family: 'Inter', sans-serif"
         >
           Прямые поставки без посредников. Любые размеры под заказ.
         </p>
       </div>
-      <div class="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 justify-center">
-        <a
-          href="#contacts"
-          class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl text-sm md:text-base font-medium"
-          style="font-family: 'Inter', sans-serif"
-        >
-          <!-- phone icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Заказать консультацию
-        </a>
+      <div class="flex justify-center">
         <a
           href="#catalog"
-          class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 border-2 border-gray-900 text-gray-900 rounded-lg hover:bg-gray-900 hover:text-white transition-colors text-sm md:text-base font-medium"
+          class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-green-700 text-white rounded-lg hover:bg-green-800 transition-colors text-sm md:text-base font-medium"
           style="font-family: 'Inter', sans-serif"
         >
           Перейти в каталог
-          <!-- arrow-right icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <ArrowRightIcon class="w-4 h-4 md:w-5 md:h-5" aria-hidden="true" />
         </a>
       </div>
     </div>
   </div>
+  <HeroWave />
 </section>
