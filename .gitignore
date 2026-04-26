@@ -5,3 +5,9 @@ dist/
 .env
 .env.*
 !.env.example
+
+# Local Codex project memory
+AGENTS.md
+docs/project-map.md
+docs/tasks.md
+docs/decisions.md

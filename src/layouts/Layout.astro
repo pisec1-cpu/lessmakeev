@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import CookieNotice from "../components/CookieNotice.astro";
 
 interface Props {
   title: string;
@@ -62,5 +63,6 @@ const {
       </div>
     </noscript>
     <slot />
+    <CookieNotice />
   </body>
 </html>
