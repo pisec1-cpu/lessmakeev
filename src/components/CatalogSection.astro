@@ -10,12 +10,12 @@ import ArrowRightIcon from '../assets/icons/ArrowRight.svg';
 import FilePdfIcon from '../assets/icons/FilePdf.svg';
 
 const catalogItems = [
-  { id: 1, name: "Брус", image: brus, price: "12 000", description: "Для стоек, опор, несущих стен, домов, бань и капитальных построек.", featured: false },
-  { id: 2, name: "Доска обрезная", image: doska, price: "18 000", description: "Для обрешётки, настилов, каркасов, перекрытий и стропил.", featured: true },
-  { id: 3, name: "Брусок", image: brusok, price: "20 000", description: "Для обрешётки, реек, перегородок и отделочных работ.", featured: false },
-  { id: 4, name: "Брус 2-х кантный", image: lafet, price: "13 000", description: "Подходит для строительства домов, бань и хозяйственных построек.", featured: false },
-  { id: 5, name: "Лес кругляк", image: roundTimber, price: "12 000", description: "Сосна и ель архангельской заготовки. Прямые поставки с производства.", featured: false },
-  { id: 6, name: "Дрова горбыль", image: gorbyl, price: "12 000", description: "Горбыль для отопления. Продажа машинами по 12 м³.", featured: false },
+  { id: 1, name: "Брус", image: brus, price: "12 000", description: "Для стоек, опор, несущих стен, домов, бань и капитальных построек.", featured: false, goal: "order_brus" },
+  { id: 2, name: "Доска обрезная", image: doska, price: "18 000", description: "Для обрешётки, настилов, каркасов, перекрытий и стропил.", featured: true, goal: "order_doska" },
+  { id: 3, name: "Брусок", image: brusok, price: "20 000", description: "Для обрешётки, реек, перегородок и отделочных работ.", featured: false, goal: "order_brusok" },
+  { id: 4, name: "Брус 2-х кантный", image: lafet, price: "13 000", description: "Подходит для строительства домов, бань и хозяйственных построек.", featured: false, goal: "order_brus_2h" },
+  { id: 5, name: "Лес кругляк", image: roundTimber, price: "12 000", description: "Сосна и ель архангельской заготовки. Прямые поставки с производства.", featured: false, goal: "order_les_kruglyak" },
+  { id: 6, name: "Дрова горбыль", image: gorbyl, price: "12 000", description: "Горбыль для отопления. Продажа машинами по 12 м³.", featured: false, goal: "order_drova" },
 ];
 ---
 <section id="catalog" class="relative py-16 md:py-20 px-6 md:px-8 bg-white overflow-hidden">
@@ -70,6 +70,7 @@ const catalogItems = [
               href="#contacts"
               data-order-btn
               data-product={item.name}
+              data-goal={item.goal}
               class="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-green-700 text-white rounded-lg hover:bg-green-800 transition-colors text-base font-medium cursor-pointer"
               style="font-family: 'Inter', sans-serif"
             >
@@ -95,3 +96,12 @@ const catalogItems = [
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>("[data-order-btn][data-goal]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const goal = btn.dataset.goal;
+      if (goal) (window as any).ym?.(24999992, "reachGoal", goal);
+    });
+  });
+</script>

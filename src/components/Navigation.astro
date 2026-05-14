@@ -7,7 +7,7 @@ import PhoneCallIcon from "../assets/icons/PhoneCall.svg";
 
     <!-- Desktop -->
     <div class="hidden md:flex items-center justify-between relative">
-      <div class="flex-shrink-0">
+      <div class="shrink-0">
         <a href="#hero" class="nav-link block" data-target="hero">
           <span class="text-[22px] md:text-2xl font-bold" style="font-family: 'Bitter', serif">Лесстройснаб</span>
         </a>
@@ -18,7 +18,7 @@ import PhoneCallIcon from "../assets/icons/PhoneCall.svg";
         <a href="#contacts" class="nav-link text-gray-700 hover:text-gray-900 transition-colors" data-target="contacts" style="font-family: 'Inter', sans-serif">Контакты</a>
       </div>
       <div class="flex items-center gap-4">
-        <a href="tel:+79115512015" class="hidden lg:flex items-center gap-2 hover:text-gray-900 transition-colors">
+        <a href="tel:+79115512015" data-goal="phone_click" class="hidden lg:flex items-center gap-2 hover:text-gray-900 transition-colors">
           <PhoneCallIcon class="w-5 h-5 text-gray-600" aria-hidden="true" />
           <span class="font-medium" style="font-family: 'Inter', sans-serif">+7 (911) 551-2015</span>
         </a>
@@ -26,6 +26,7 @@ import PhoneCallIcon from "../assets/icons/PhoneCall.svg";
           href="https://max.ru/u/f9LHodD0cOJTDig7ewCMP6Ky-5693krHzcfmecp6n7_D2VRPHBOqabsMLZg"
           target="_blank"
           rel="noreferrer"
+          data-goal="messenger_click"
           class="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-cyan-500 via-blue-600 to-purple-600 text-white rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap"
           style="font-family: 'Inter', sans-serif"
         >
@@ -52,7 +53,7 @@ import PhoneCallIcon from "../assets/icons/PhoneCall.svg";
         <a href="#catalog" class="nav-link text-gray-700 hover:text-gray-900 transition-colors py-2" data-target="catalog" style="font-family: 'Inter', sans-serif">Каталог</a>
         <a href="#gallery" class="nav-link text-gray-700 hover:text-gray-900 transition-colors py-2" data-target="gallery" style="font-family: 'Inter', sans-serif">Галерея</a>
         <a href="#contacts" class="nav-link text-gray-700 hover:text-gray-900 transition-colors py-2" data-target="contacts" style="font-family: 'Inter', sans-serif">Контакты</a>
-        <a href="tel:+79115512015" class="flex items-center gap-2 py-2 hover:text-gray-900 transition-colors">
+        <a href="tel:+79115512015" data-goal="phone_click" class="flex items-center gap-2 py-2 hover:text-gray-900 transition-colors">
           <PhoneCallIcon class="w-5 h-5 text-gray-600" aria-hidden="true" />
           <span class="font-medium" style="font-family: 'Inter', sans-serif">+7 (911) 551-2015</span>
         </a>
@@ -60,6 +61,7 @@ import PhoneCallIcon from "../assets/icons/PhoneCall.svg";
           href="https://max.ru/u/f9LHodD0cOJTDig7ewCMP6Ky-5693krHzcfmecp6n7_D2VRPHBOqabsMLZg"
           target="_blank"
           rel="noreferrer"
+          data-goal="messenger_click"
           class="inline-flex items-center justify-center gap-2 px-4 py-3 bg-linear-to-r from-cyan-500 via-blue-600 to-purple-600 text-white rounded-lg hover:opacity-90 transition-opacity w-full"
           style="font-family: 'Inter', sans-serif"
         >
@@ -113,5 +115,12 @@ toggle?.addEventListener("click", () => {
   menu?.classList.toggle("hidden", isOpen);
   document.getElementById("icon-menu")?.classList.toggle("hidden", !isOpen);
   document.getElementById("icon-close")?.classList.toggle("hidden", isOpen);
+});
+
+document.querySelectorAll<HTMLAnchorElement>("[data-goal]").forEach((el) => {
+  el.addEventListener("click", () => {
+    const goal = el.dataset.goal;
+    if (goal) (window as any).ym?.(24999992, "reachGoal", goal);
+  });
 });
 </script>
